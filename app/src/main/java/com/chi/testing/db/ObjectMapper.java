@@ -6,7 +6,7 @@ import android.database.Cursor;
 import com.chi.testing.db.sqlite.entity.TestEntity;
 import com.chi.testing.model.Test;
 
-public final class Mapping {
+public final class ObjectMapper {
 
     static ContentValues contentValues;
 

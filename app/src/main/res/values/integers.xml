@@ -1,0 +1,3 @@
+<resources>
+    <integer name="maxLength">5</integer>
+</resources>

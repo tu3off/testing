@@ -11,8 +11,6 @@ import com.chi.testing.db.sqlite.SqlHelper;
 import com.chi.testing.db.sqlite.entity.TestEntity;
 import com.chi.testing.model.Test;
 
-import java.util.concurrent.Executor;
-
 public final class DbManager implements DbBridge {
 
     private static final String TAG = DbManager.class.getName();
@@ -31,7 +29,7 @@ public final class DbManager implements DbBridge {
 
     @Override
     public long insert(Test object) {
-        return sqLiteDatabase.insert(TestEntity.TABLE_NAME, null, Mapping.toTestContentValues(object));
+        return sqLiteDatabase.insert(TestEntity.TABLE_NAME, null, ObjectMapper.toTestContentValues(object));
     }
 
     @Override
@@ -41,7 +39,7 @@ public final class DbManager implements DbBridge {
                 null, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
-            test = Mapping.toTestModel(cursor);
+            test = ObjectMapper.toTestModel(cursor);
             cursor.close();
         } else {
             test = null;

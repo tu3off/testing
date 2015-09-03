@@ -1,6 +1,7 @@
 package com.chi.testing;
 
 import android.test.AndroidTestCase;
+import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
 
 import com.chi.testing.core.bridge.DbBridge;
@@ -17,16 +18,15 @@ public class DbTest extends AndroidTestCase {
         dbBridge = new DbManager(getContext());
     }
 
-    @SmallTest
+    @MediumTest
     public void testInsert() {
         Test test = new Test();
         test.setName("sd");
         long id = dbBridge.insert(test);
         assertTrue(id != -1);
-
     }
 
-    @SmallTest
+    @MediumTest
     public void testSelect() {
         Test test = dbBridge.select();
         assertNotNull(test);

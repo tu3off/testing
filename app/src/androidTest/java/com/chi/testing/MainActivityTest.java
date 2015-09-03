@@ -26,11 +26,16 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     @SmallTest
-    public void testSampleEditText() {
-        final EditText editText = (EditText) activity.findViewById(R.id.etExample);
-        final String testStringOverMaxEditTextLength = activity.getString(R.string.test_max_length_string);
-        final int maxLength = activity.getResources().getInteger(R.integer.maxLength);
-        editText.setTag(testStringOverMaxEditTextLength);
-        Assert.assertTrue(editText.getText().length() < maxLength);
+    public void testSampleEditText() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                final EditText editText = (EditText) activity.findViewById(R.id.etExample);
+                final String testStringOverMaxEditTextLength = activity.getString(R.string.test_max_length_string);
+                final int maxLength = activity.getResources().getInteger(R.integer.maxLength);
+                editText.setText(testStringOverMaxEditTextLength);
+                Assert.assertTrue(editText.getText().length() <= maxLength);
+            }
+        });
     }
 }
